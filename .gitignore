@@ -1,0 +1,12 @@
+# Node / React
+node_modules/
+dist/
+.DS_Store
+
+# Python / FastAPI
+venv/
+__pycache__/
+*.pyc
+
+# Environment Variables
+.env
