@@ -1,16 +1,56 @@
-# React + Vite
+# BHUSHAKTI Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite + Tailwind CSS v4 frontend for the **BHUSHAKTI — AI-Powered Landslide Intelligence & Early Warning Network**.
 
-Currently, two official plugins are available:
+## Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# Install dependencies
+npm install
 
-## React Compiler
+# Start dev server
+npm run dev
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Build for production
+npm run build
+```
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React 19** — UI framework
+- **Vite 7** — Build tool and dev server
+- **Tailwind CSS v4** — Utility-first styling (via `@tailwindcss/vite` plugin)
+- **React Router DOM v7** — Client-side routing
+- **React-Leaflet** — Interactive GIS map with ESRI satellite imagery
+- **Recharts** — Data visualization charts
+- **Lucide React** — Icon library
+- **Axios** — HTTP client (for future API integration)
+
+## Project Structure
+
+```
+src/
+├── data/
+│   └── mockData.js          # Centralized mock data (swap point for API)
+├── App.jsx                  # Router configuration
+├── Layout.jsx               # Sidebar + Outlet shell
+├── Sidebar.jsx              # Navigation sidebar
+├── ErrorBoundary.jsx        # Error boundary wrapper
+├── CommandCenter.jsx        # GIS map dashboard (/)
+├── ActiveAlerts.jsx         # Alert table + SMS dispatch (/alerts)
+├── FieldReports.jsx         # CV image card gallery (/reports)
+├── SensorTelemetry.jsx      # Recharts telemetry dashboard (/telemetry)
+├── NotFound.jsx             # 404 page
+├── index.css                # Tailwind + Leaflet CSS imports
+└── main.jsx                 # App entry point
+```
+
+## Routes
+
+| Path | Component | Description |
+|------|-----------|-------------|
+| `/` | `CommandCenter` | Interactive satellite map with risk zones |
+| `/alerts` | `ActiveAlerts` | Emergency alert table with dispatch simulation |
+| `/reports` | `FieldReports` | AI computer vision field report cards |
+| `/telemetry` | `SensorTelemetry` | Sensor data charts (rainfall, displacement, battery) |
+| `*` | `NotFound` | 404 catch-all |

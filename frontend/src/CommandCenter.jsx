@@ -1,26 +1,10 @@
+import { useEffect } from 'react';
 import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
 import { Activity, AlertTriangle } from 'lucide-react';
-
-const mockHazardData = [
-  { id: 1, zone_name: "NH-10 Sector A", coordinates: [27.3312, 88.6139], risk_score: 87, primary_driver: "Extreme Rainfall & Soil Saturation", status: "Critical" },
-  { id: 2, zone_name: "Sikkim Valley Route", coordinates: [27.3502, 88.6215], risk_score: 64, primary_driver: "Ground Movement Detected", status: "Warning" },
-  { id: 3, zone_name: "Gangtok Approach", coordinates: [27.3200, 88.6000], risk_score: 42, primary_driver: "Moderate Rainfall", status: "Watch" },
-  { id: 4, zone_name: "Mangan Highway", coordinates: [27.3900, 88.5400], risk_score: 12, primary_driver: "Stable Conditions", status: "Normal" }
-];
-
-const mockReports = [
-  { id: 101, reporter: "Bhaveshbhai Patel", type: "Ground Crack", severity: "High", time: "10:15 AM" },
-  { id: 102, reporter: "Jigneshbhai Joshi", type: "Water Accumulation", severity: "Medium", time: "09:42 AM" },
-  { id: 103, reporter: "Rajubhai Bhatt", type: "Minor Rockfall", severity: "Low", time: "08:10 AM" }
-];
+import { mockHazardData, mockFieldReports, getRiskColor } from './data/mockData';
 
 export default function CommandCenter() {
-  const getRiskColor = (score) => {
-    if (score >= 75) return "#ef4444"; // Red (Critical)
-    if (score >= 60) return "#f97316"; // Orange (Warning)
-    if (score >= 40) return "#eab308"; // Yellow (Watch)
-    return "#22c55e"; // Green (Normal)
-  };
+  useEffect(() => { document.title = 'Command Center — BHUSHAKTI'; }, []);
 
   return (
     <div className="flex w-full flex-1">
@@ -48,11 +32,11 @@ export default function CommandCenter() {
                   fillOpacity: 0.4
                 }}
               >
-                <Popup className="custom-popup">
+                <Popup>
                   <div className="p-1 font-sans">
-                    <h3 className="font-bold text-slate-800">{zone.zone_name}</h3>
-                    <p className="text-sm text-slate-600 mt-1">Risk Score: <strong style={{ color: getRiskColor(zone.risk_score) }}>{zone.risk_score}%</strong></p>
-                    <p className="text-sm text-slate-600">Driver: {zone.primary_driver}</p>
+                    <h3 className="font-bold">{zone.zone_name}</h3>
+                    <p className="text-sm mt-1">Risk Score: <strong style={{ color: getRiskColor(zone.risk_score) }}>{zone.risk_score}%</strong></p>
+                    <p className="text-sm">Driver: {zone.primary_driver}</p>
                   </div>
                 </Popup>
               </CircleMarker>
@@ -88,7 +72,7 @@ export default function CommandCenter() {
             <AlertTriangle className="text-yellow-400" size={20} /> Field Reports
           </h2>
 
-          {mockReports.map(report => (
+          {mockFieldReports.map(report => (
             <div key={report.id} className="bg-slate-700/30 border border-slate-600/50 rounded-lg p-3">
               <div className="flex justify-between items-center mb-1">
                 <span className="text-sm font-medium text-slate-200">{report.type}</span>

@@ -1,45 +1,14 @@
+import { useEffect } from 'react';
 import { Radio, Activity, Droplets, Zap, Signal } from 'lucide-react';
 import { 
   ComposedChart, LineChart, AreaChart, 
   Bar, Line, Area, 
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine 
 } from 'recharts';
-
-const rainfallMoistureData = [
-  { time: '00:00', rainfall: 0, moisture: 45 },
-  { time: '04:00', rainfall: 2, moisture: 46 },
-  { time: '08:00', rainfall: 15, moisture: 52 },
-  { time: '12:00', rainfall: 45, moisture: 68 }, // Spike in rain
-  { time: '16:00', rainfall: 30, moisture: 75 }, // Moisture rising
-  { time: '20:00', rainfall: 10, moisture: 82 }, // Crosses 80%
-  { time: '24:00', rainfall: 0, moisture: 85 },
-  { time: '28:00', rainfall: 0, moisture: 84 },
-  { time: '32:00', rainfall: 5, moisture: 83 },
-  { time: '36:00', rainfall: 25, moisture: 87 },
-  { time: '40:00', rainfall: 15, moisture: 89 },
-  { time: '44:00', rainfall: 0, moisture: 88 },
-  { time: '48:00', rainfall: 0, moisture: 86 },
-];
-
-const displacementData = [
-  { day: 'Day 1', x: 0.2, y: 0.1, z: 0.5 },
-  { day: 'Day 2', x: 0.3, y: 0.1, z: 0.6 },
-  { day: 'Day 3', x: 0.3, y: 0.2, z: 0.6 },
-  { day: 'Day 4', x: 0.5, y: 0.4, z: 0.8 },
-  { day: 'Day 5', x: 1.2, y: 0.8, z: 1.5 }, // Noticeable shift
-  { day: 'Day 6', x: 1.8, y: 1.2, z: 2.1 },
-  { day: 'Day 7', x: 2.1, y: 1.5, z: 2.5 },
-];
-
-const healthData = [
-  { sector: 'Sector Alpha', uptime: 99.9, battery: 85 },
-  { sector: 'Sector Beta', uptime: 98.5, battery: 72 },
-  { sector: 'Sector Gamma', uptime: 95.0, battery: 45 },
-  { sector: 'Sector Delta', uptime: 99.0, battery: 90 },
-  { sector: 'Sector Echo', uptime: 92.5, battery: 30 },
-];
+import { rainfallMoistureData, displacementData, healthData } from './data/mockData';
 
 export default function SensorTelemetry() {
+  useEffect(() => { document.title = 'Sensor Telemetry — BHUSHAKTI'; }, []);
   const tooltipStyle = { backgroundColor: '#1e293b', borderColor: '#334155', color: '#f8fafc' };
   const axisColor = "#475569";
 

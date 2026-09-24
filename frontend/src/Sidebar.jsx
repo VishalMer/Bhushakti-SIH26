@@ -17,7 +17,7 @@ export default function Sidebar() {
       </div>
 
       <nav className="flex-1 p-4 space-y-2">
-        <NavLink to="/" className={navLinkClass}>
+        <NavLink to="/" end className={navLinkClass}>
           <MapIcon size={20} /> Command Center
         </NavLink>
         <NavLink to="/alerts" className={navLinkClass}>

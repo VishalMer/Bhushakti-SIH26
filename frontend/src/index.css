@@ -1,2 +1,25 @@
 @import "tailwindcss";
 @import "leaflet/dist/leaflet.css";
+
+/* Dark-mode overrides for Leaflet popups */
+.leaflet-popup-content-wrapper {
+  background-color: #1e293b;
+  color: #f1f5f9;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+.leaflet-popup-content-wrapper h3 {
+  color: #f1f5f9;
+}
+.leaflet-popup-content-wrapper p {
+  color: #94a3b8;
+}
+.leaflet-popup-tip {
+  background-color: #1e293b;
+}
+.leaflet-popup-close-button {
+  color: #94a3b8 !important;
+}
+.leaflet-popup-close-button:hover {
+  color: #f1f5f9 !important;
+}

@@ -1,81 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Filter, MapPin, Clock, Camera } from 'lucide-react';
-
-const mockReports = [
-  {
-    id: 1,
-    imageUrl: "https://images.unsplash.com/photo-1541888081622-2db10c0ea91b?auto=format&fit=crop&q=80&w=800",
-    bbox: { top: '25%', left: '30%', width: '45%', height: '50%' },
-    label: "Deep Crack: 94%",
-    timestamp: "2026-09-23 08:15 AM",
-    gps: "27.3312° N, 88.6139° E",
-    hazardType: "Tension Crack",
-    reporter: "Rajubhai Bhatt",
-    severity: "Critical"
-  },
-  {
-    id: 2,
-    imageUrl: "https://images.unsplash.com/photo-1616423640778-28d1b53229bd?auto=format&fit=crop&q=80&w=800",
-    bbox: { top: '40%', left: '20%', width: '35%', height: '35%' },
-    label: "Wall Bulge: 88%",
-    timestamp: "2026-09-23 09:30 AM",
-    gps: "27.3502° N, 88.6215° E",
-    hazardType: "Retaining Wall Bulge",
-    reporter: "Bhaveshbhai Mer",
-    severity: "High"
-  },
-  {
-    id: 3,
-    imageUrl: "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?auto=format&fit=crop&q=80&w=800",
-    bbox: { top: '50%', left: '40%', width: '25%', height: '20%' },
-    label: "Erosion: 75%",
-    timestamp: "2026-09-23 10:45 AM",
-    gps: "27.3200° N, 88.6000° E",
-    hazardType: "Soil Erosion",
-    reporter: "Kamleshbhai Patel",
-    severity: "Moderate"
-  },
-  {
-    id: 4,
-    imageUrl: "https://images.unsplash.com/photo-1585250007802-95f87b322a36?auto=format&fit=crop&q=80&w=800",
-    bbox: { top: '15%', left: '55%', width: '35%', height: '40%' },
-    label: "Rockfall: 91%",
-    timestamp: "2026-09-23 11:20 AM",
-    gps: "27.3900° N, 88.5400° E",
-    hazardType: "Active Rockfall",
-    reporter: "Hiteshbhai Desai",
-    severity: "Critical"
-  },
-  {
-    id: 5,
-    imageUrl: "https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?auto=format&fit=crop&q=80&w=800",
-    bbox: { top: '65%', left: '15%', width: '45%', height: '25%' },
-    label: "Sinkhole: 82%",
-    timestamp: "2026-09-23 12:15 PM",
-    gps: "27.3350° N, 88.6100° E",
-    hazardType: "Road Subsidence",
-    reporter: "Alpesh Parmar",
-    severity: "High"
-  },
-  {
-    id: 6,
-    imageUrl: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&q=80&w=800",
-    bbox: { top: '35%', left: '65%', width: '25%', height: '55%' },
-    label: "Seepage: 79%",
-    timestamp: "2026-09-23 01:05 PM",
-    gps: "27.3450° N, 88.6050° E",
-    hazardType: "Water Seepage",
-    reporter: "Jigneshbhai Joshi",
-    severity: "Moderate"
-  }
-];
+import { mockCVReports } from './data/mockData';
 
 export default function FieldReports() {
   const [filter, setFilter] = useState('All');
+  useEffect(() => { document.title = 'Field Reports — BHUSHAKTI'; }, []);
 
   const filteredReports = filter === 'All' 
-    ? mockReports 
-    : mockReports.filter(report => report.severity === filter);
+    ? mockCVReports 
+    : mockCVReports.filter(report => report.severity === filter);
 
   return (
     <div className="p-8 text-slate-100 font-sans w-full max-w-7xl mx-auto flex flex-col gap-8">

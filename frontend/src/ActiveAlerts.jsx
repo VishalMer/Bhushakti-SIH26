@@ -1,17 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AlertTriangle, Check, Loader2, Send } from 'lucide-react';
-
-const mockAlerts = [
-  { id: 1, zoneName: "Tawang Route", riskScore: 88, hazardDriver: "Extreme Rainfall & Soil Saturation", assignedOfficer: "Jigneshbhai Desai", status: "Evacuation Advised" },
-  { id: 2, zoneName: "Sikkim Valley", riskScore: 78, hazardDriver: "Ground Movement Detected", assignedOfficer: "Alpesh Parmar", status: "Evacuation Advised" },
-  { id: 3, zoneName: "Mangan Highway", riskScore: 65, hazardDriver: "Moderate Rainfall", assignedOfficer: "Maheshbhai Patel", status: "Monitor" },
-  { id: 4, zoneName: "NH-10 Sector A", riskScore: 55, hazardDriver: "Minor Rockfall", assignedOfficer: "Kiran Mehta", status: "Monitor" },
-  { id: 5, zoneName: "Gangtok Approach", riskScore: 45, hazardDriver: "Water Accumulation", assignedOfficer: "Sanjaybhai Patel", status: "Watch" },
-  { id: 6, zoneName: "Teesta River Bridge", riskScore: 35, hazardDriver: "Stable Conditions", assignedOfficer: "Rajeshbhai Joshi", status: "Clear" }
-];
+import { mockAlerts } from './data/mockData';
 
 export default function ActiveAlerts() {
   const [dispatchStatus, setDispatchStatus] = useState({});
+  useEffect(() => { document.title = 'Active Alerts — BHUSHAKTI'; }, []);
 
   const handleDispatch = (id) => {
     setDispatchStatus(prev => ({ ...prev, [id]: 'sending' }));
